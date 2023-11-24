@@ -13,8 +13,10 @@ model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
+  password String
   posts Post[]
   role Role
+ 
 }
 
 model Post {
@@ -25,6 +27,7 @@ model Post {
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
 }
+
 model Role{
   id   Int     @id @default(autoincrement())
   role String 
