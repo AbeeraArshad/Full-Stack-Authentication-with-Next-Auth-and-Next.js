@@ -16,9 +16,9 @@ model User {
   email String  @unique
   name  String?
   password String
- roleId Int 
- role Role  @relation(fields: [roleId], references: [id])
-
+  roleId Int 
+  role Role  @relation(fields: [roleId], references: [id])
+  posts Post[]
  
 }
 
@@ -28,4 +28,13 @@ model Role{
   role String
   users User[]  
 
+}
+
+model Post {
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  Int
 }
